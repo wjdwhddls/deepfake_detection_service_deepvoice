@@ -16,10 +16,10 @@ Team Member: 박웅, 유민주, 박제현, 김홍권, 박민규
 
 - Result and Accomplishment
 
-| Competition Type | Result                   | Note                             |
-|------------------|--------------------------|----------------------------------|
+| Competition Type | Result                  | Note                              |
+|------------------|-------------------------|-----------------------------------|
 | Preliminary      | Public: 6th, Private 6th | Public: 0.17125, Private: 0.17077 |
-| Final            | Not Yet Updated          | Not Yet Updated                  |
+| Final            | 6th                     | 소프트웨어협회장상(우수상)                    |
 
 <hr/>
 
