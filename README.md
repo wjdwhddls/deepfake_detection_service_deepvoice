@@ -124,6 +124,12 @@ Notice: We recommend making a new virtual environment with above versions and ``
 
 <hr/>
 
+## Key Figure
+
+<img src="./src/image_siam_fake_detector.png">
+
+<hr/>
+
 ## Reference
 
 - WeSpeaker
