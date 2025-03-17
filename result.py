@@ -30,7 +30,7 @@ classifier_model.load_state_dict(torch.load('./history/model/Epoch_32_best_model
 classifier_model.eval()  # 평가 모드로 전환  
 
 # 데이터 경로 로드  
-base_path = '/Users/jongin/deepfake_detection_service_algorithm/deepvoice/data/open/'  
+base_path = '/Users/jongin/deepfake_detection_service_deepvoice/data/open/'  
 (anchor_path_list, anchor_label_list), fake_file_list, real_file_list = load_path_list(base_path)  
 
 path_dict = pickle.load(open(f'./history/train_valid_test.pickle', 'rb'))  
@@ -100,5 +100,5 @@ def predict(file_path):
         print("이 파일은 진짜입니다.")   
 
 # 사용 예시  
-file_path = '/Users/jongin/deepfake_detection_service_algorithm/deepvoice/data_example/VOLI_TTS_오은영 (2).wav'  # 예측할 오디오 파일 경로  
+file_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example/VOLI_TTS_오은영 (2).wav'  # 예측할 오디오 파일 경로  
 predict(file_path)  
