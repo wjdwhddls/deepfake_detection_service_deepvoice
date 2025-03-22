@@ -90,14 +90,20 @@ def predict(file_path):
     # 예측 수행  
     with torch.no_grad():  
         pred_fake, pred_real = classifier_model(embedding_tensor, ref_fake, ref_real)  # 모델에 임베딩 입력  
-        pred_fake = (pred_fake > 0.5).cpu().numpy()  
-        pred_real = (pred_real > 0.5).cpu().numpy()  
+
+    # 예측 확률을 사용  
+    pred_fake_prob = torch.sigmoid(pred_fake).cpu().numpy()[0][0]  # 가짜 확률  
+    pred_real_prob = torch.sigmoid(pred_real).cpu().numpy()[0][0]  # 진짜 확률  
 
     # 결과 출력  
-    if pred_fake[0] == 1.0:  
-        print("이 파일은 가짜입니다.")  
-    else:  
-        print("이 파일은 진짜입니다.")   
+    if pred_real_prob > pred_fake_prob:  # 진짜 확률이 가짜 확률보다 높으면  
+        result = "진짜입니다."  
+        probability = pred_real_prob * 100  
+    else:  # 가짜 확률이 진짜 확률보다 높으면  
+        result = "가짜입니다."  
+        probability = pred_fake_prob * 100  
+
+    print(f"이 파일은 {result} 확률: {probability:.2f}%")   
 
 # 사용 예시  
 file_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example/홍익대학교 3.m4a'  # 예측할 오디오 파일 경로  
