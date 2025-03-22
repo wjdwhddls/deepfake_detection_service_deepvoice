@@ -100,5 +100,5 @@ def predict(file_path):
         print("이 파일은 진짜입니다.")   
 
 # 사용 예시  
-file_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example/VOLI_TTS_오은영 _2.wav'  # 예측할 오디오 파일 경로  
+file_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example/홍익대학교 3.m4a'  # 예측할 오디오 파일 경로  
 predict(file_path)  
