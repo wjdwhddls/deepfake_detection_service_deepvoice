@@ -10,7 +10,7 @@ import pickle
 from torch.utils.data import DataLoader  
 
 # 모델 경로 및 데이터 경로 설정  
-model_path = './WeSpeaker_ResNet221/'  
+model_path = '/Users/jongin/deepfake_detection_service_deepvoice/WeSpeaker_ResNet221/'  
 base_path = './data/open/'  
 
 # WeSpeaker 모델 로드  
@@ -21,19 +21,19 @@ embedding_model.set_device('mps')  # Speaker 클래스의 set_gpu 메서드 사�
 
 # 진짜/가짜 판단을 위한 모델 로드  
 from model import SiamMetricNetworks  # 모델 클래스 임포트  
-cfg = load_config('./config.yaml')  # 설정 로드  
+cfg = load_config('/Users/jongin/deepfake_detection_service_deepvoice/config.yaml')  # 설정 로드  
 classifier_model = SiamMetricNetworks(cfg['INPUT_DIM'], cfg['HIDDEN_DIM'], cfg['OUTPUT_DIM'])  
 classifier_model.to('mps')  # MPS로 모델 이동  
 
 # 모델 로드: Epoch_32_best_model.pth 사용  
-classifier_model.load_state_dict(torch.load('./history/model/Epoch_32_best_model.pth', map_location='mps'))  
+classifier_model.load_state_dict(torch.load('/Users/jongin/deepfake_detection_service_deepvoice/history/model/Epoch_32_best_model.pth', map_location='mps'))  
 classifier_model.eval()  # 평가 모드로 전환  
 
 # 데이터 경로 로드  
 base_path = '/Users/jongin/deepfake_detection_service_deepvoice/data/open/'  
 (anchor_path_list, anchor_label_list), fake_file_list, real_file_list = load_path_list(base_path)  
 
-path_dict = pickle.load(open(f'./history/train_valid_test.pickle', 'rb'))  
+path_dict = pickle.load(open(f'/Users/jongin/deepfake_detection_service_deepvoice/history/train_valid_test.pickle', 'rb'))  
 
 # 데이터셋을 설정  
 anchor_dataset = AnchorDataset(anchor_path_list, anchor_label_list, base_path)  
@@ -100,5 +100,5 @@ def predict(file_path):
         print("이 파일은 진짜입니다.")   
 
 # 사용 예시  
-file_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example/VOLI_TTS_오은영 (2).wav'  # 예측할 오디오 파일 경로  
+file_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example/VOLI_TTS_오은영 _2.wav'  # 예측할 오디오 파일 경로  
 predict(file_path)  
