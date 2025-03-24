@@ -102,8 +102,15 @@ def predict(file_path):
     else:  # 가짜 확률이 진짜 확률보다 높으면  
         result = "가짜입니다."  
         probability = pred_fake_prob * 100  
+    
+    file_name = os.path.basename(file_path)  
 
-    print(f"이 파일은 {result} 확률: {probability:.2f}%")   
+    # 포맷된 결과 메시지 출력  
+    print(f"=== 예측 결과 ===\n"  
+          f"파일 경로: {file_name}\n"  
+          f"결과: {result}\n"  
+          f"확률: {probability:.2f}%\n"  
+          "=================")    
 
 def get_latest_file(directory: str) -> str:  
     files = [os.path.join(directory, f) for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]  
@@ -117,7 +124,10 @@ directory_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_exampl
 latest_file_path = get_latest_file(directory_path)  
 
 if latest_file_path:  
-    print(f"가장 최근 파일: {latest_file_path}")  
+    #print(f"가장 최근 파일: {latest_file_path}")  
     predict(latest_file_path)  # 예측 수행  
 else:  
     print("폴더에 파일이 없습니다.")  
+
+#file_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example/VOLI_TTS_오은영 _2.wav'  # 예측할 오디오 파일 경로
+#predict(file_path)
