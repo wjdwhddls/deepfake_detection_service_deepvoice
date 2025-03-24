@@ -105,6 +105,19 @@ def predict(file_path):
 
     print(f"이 파일은 {result} 확률: {probability:.2f}%")   
 
-# 사용 예시  
-file_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example/홍익대학교 3.m4a'  # 예측할 오디오 파일 경로  
-predict(file_path)  
+def get_latest_file(directory: str) -> str:  
+    files = [os.path.join(directory, f) for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]  
+    if not files:  
+        return None  
+    latest_file = max(files, key=os.path.getctime)  # 가장 최근 생성된 파일 찾기  
+    return latest_file  
+
+# 최신 파일 찾기  
+directory_path = '/Users/jongin/deepfake_detection_service_deepvoice/data_example'  
+latest_file_path = get_latest_file(directory_path)  
+
+if latest_file_path:  
+    print(f"가장 최근 파일: {latest_file_path}")  
+    predict(latest_file_path)  # 예측 수행  
+else:  
+    print("폴더에 파일이 없습니다.")  
