@@ -3,3 +3,6 @@ data
 WeSpeaker_ResNet221
 history
 data_example
+deepvoice
+.python-version
+__pycache__
